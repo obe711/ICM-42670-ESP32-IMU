@@ -1,0 +1,9 @@
+{
+  "name": "ICM-42670-ESP32-IMU",
+  "description": "6 Axis motion tracking IMU ICM-42670 driver for ESP32",
+  "keywords": "icm42670,esp32,imu",
+  "build": {
+    "flags": ["-I inc", "-I src"],
+    "src_filter": ["+inc", "+src"]
+  }
+}
