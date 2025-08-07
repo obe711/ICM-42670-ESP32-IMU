@@ -272,9 +272,15 @@ esp_err_t icm42670_get_acce_value(icm42670_handle_t sensor,
   value->z = 0;
 
   ret = icm42670_get_acce_sensitivity(sensor, &sensitivity);
+  if (ret != ESP_OK) {
+    printf("ERROR: %s \n", esp_err_to_name(ret));
+  }
   ESP_RETURN_ON_ERROR(ret, TAG, "Get sensitivity error!");
 
   ret = icm42670_get_acce_raw_value(sensor, &raw_value);
+  if (ret != ESP_OK) {
+    printf("ERROR: %s \n", esp_err_to_name(ret));
+  }
   ESP_RETURN_ON_ERROR(ret, TAG, "Get raw value error!");
 
   value->x = raw_value.x / sensitivity;

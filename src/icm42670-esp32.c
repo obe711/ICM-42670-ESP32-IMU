@@ -22,14 +22,14 @@
 
 // static i2c_port_t i2c_master_port = I2C_MASTER_NUM;
 
-static icm42670_handle_t icm_sensor;
+// static icm42670_handle_t icm_sensor;
 
-static icm42670_cfg_t sensor_cfg = {
-    ACCE_FS_8G,      /*!< Accelerometer full scale range */
-    ACCE_ODR_1600HZ, /*!< Accelerometer ODR selection */
-    GYRO_FS_2000DPS, /*!< Gyroscope full scale range */
-    GYRO_ODR_1600HZ, /*!< Gyroscope ODR selection */
-};
+// icm42670_cfg_t sensor_cfg = {
+//     ACCE_FS_8G,      /*!< Accelerometer full scale range */
+//     ACCE_ODR_1600HZ, /*!< Accelerometer ODR selection */
+//     GYRO_FS_2000DPS, /*!< Gyroscope full scale range */
+//     GYRO_ODR_1600HZ, /*!< Gyroscope ODR selection */
+// };
 
 float calculate_tilt_angle(float x, float y, float z) {
   return fabsf(atan2f(x, sqrtf(y * y + z * z)) * RAD_TO_DEG);
