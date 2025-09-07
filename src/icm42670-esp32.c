@@ -31,10 +31,25 @@
 //     GYRO_ODR_1600HZ, /*!< Gyroscope ODR selection */
 // };
 
+/**
+ * @brief Calculate the angle of tilt
+ *
+ * @param x X axis value
+ * @param y Y axis value
+ * @param z Z axis value
+ * @return Measurement of inclination (Degree)
+ */
 float calculate_tilt_angle(float x, float y, float z) {
   return fabsf(atan2f(x, sqrtf(y * y + z * z)) * RAD_TO_DEG);
 }
 
+/**
+ * @brief Set the log output level
+ *
+ * @param log_level
+ * @return
+ *      - ESP_OK                Set level success
+ */
 esp_err_t set_icm42670_log_level(esp_log_level_t log_level) {
   esp_log_level_set("ICM42670", log_level);
   esp_log_level_set(TAG, log_level);
@@ -42,6 +57,18 @@ esp_err_t set_icm42670_log_level(esp_log_level_t log_level) {
   return ESP_OK;
 };
 
+/**
+ * @brief   Install and start ICM 42670 driver.
+ * @note    This function must be called before any ICM 42670 driver read
+ *          operations.
+ *
+ *
+ * @param   esp_config      Pointer to config - see icm42670_esp_config_t struct
+ *
+ * @return
+ *     - ESP_OK              Success
+ *     - ESP_FAIL            Init error
+ */
 esp_err_t init_icm42670(icm42670_esp_config_t *esp_config) {
   ESP_LOGI(TAG, "Init icm42670");
 
