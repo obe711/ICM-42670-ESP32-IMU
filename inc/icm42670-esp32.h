@@ -27,3 +27,5 @@ typedef struct {
 
 esp_err_t init_icm42670(icm42670_esp_config_t *esp_config);
 float calculate_tilt_angle(float x, float y, float z);
+
+esp_err_t set_icm42670_log_level(esp_log_level_t log_level);
