@@ -13,6 +13,9 @@
 #include <math.h>
 
 #define TAG "icm42670-esp32"
+#define LOG_LEVEL_LOCAL ESP_LOG_NONE
+
+static uint8_t man_log_set = 0;
 
 #define ICM_ADDRESS 0x68
 
@@ -51,6 +54,7 @@ float calculate_tilt_angle(float x, float y, float z) {
  *      - ESP_OK                Set level success
  */
 esp_err_t set_icm42670_log_level(esp_log_level_t log_level) {
+  man_log_set = 1;
   esp_log_level_set("ICM42670", log_level);
   esp_log_level_set(TAG, log_level);
 
@@ -95,6 +99,11 @@ esp_err_t init_icm42670(icm42670_esp_config_t *esp_config) {
       ESP_OK) {
     ESP_LOGE(TAG, "icm42670_gyro_set_pwr");
     return ESP_FAIL;
+  }
+
+  if (!man_log_set) {
+    esp_log_level_set("ICM42670", LOG_LEVEL_LOCAL);
+    esp_log_level_set(TAG, LOG_LEVEL_LOCAL);
   }
 
   return ESP_OK;
